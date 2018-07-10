@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { white } from '../utils/colors'
 
 class DeckListItem extends Component {
   render() {
@@ -8,7 +9,7 @@ class DeckListItem extends Component {
     return (
       <View style={styles.item}>
         <Text>{title}</Text>
-        <Text>{cardCount}</Text>
+        <Text style={{marginTop: 10}}>{cardCount}</Text>
       </View>
     )
   }
@@ -24,13 +25,14 @@ function mapStateToProps(decks, props) {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#fff',
+    backgroundColor: white,
     borderRadius: 16,
-    padding: 20,
+    padding: 15,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 17,
     justifyContent: 'center',
+    alignItems: 'center',
     shadowRadius: 3,
     shadowOpacity: 0.8,
     shadowColor: 'rgba(0, 0, 0, 0.24)',

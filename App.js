@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import DeckList from './components/DeckList'
-import { purple } from './utils/colors'
+import { purple, lightGray } from './utils/colors'
 import { Constants } from 'expo'
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer)}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: lightGray }}>
           <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
           <DeckList />
         </View>

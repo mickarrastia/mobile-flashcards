@@ -27,12 +27,12 @@ let decks = {
   }
 }
 
-function setData () {
+function setData() {
   AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
   return decks
 }
 
-export function init (results) {
+export function init(results) {
   return results === null
     ? setData()
     : JSON.parse(results)

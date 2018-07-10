@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { FlatList, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
+import DeckListItem from './DeckListItem'
 
 class DeckList extends Component {
   componentDidMount() {
@@ -10,10 +11,18 @@ class DeckList extends Component {
     getDecks().then((decks) => dispatch(receiveDecks(decks)))
   }
 
+  renderItem = ({ item }) => {
+    return <DeckListItem key={item.key} id={item.key} />
+  }
+
   render() {
+    const { decks } = this.props
     return (
-      <View>
-        <Text>{JSON.stringify(this.props.decks)}</Text>
+      <View style={{ flex: 1, alignSelf: 'stretch' }}>
+        <FlatList
+          data={Object.keys(decks).map(id => { return { key: id } })}
+          renderItem={this.renderItem}
+        />
       </View>
     )
   }

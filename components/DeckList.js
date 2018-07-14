@@ -11,17 +11,13 @@ class DeckList extends Component {
     getDecks().then((decks) => dispatch(receiveDecks(decks)))
   }
 
-  renderItem = ({ item }) => {
-    return <DeckListItem key={item.key} id={item.key} />
-  }
-
   render() {
     const { decks } = this.props
     return (
       <View style={{ flex: 1, alignSelf: 'stretch' }}>
         <FlatList
           data={Object.keys(decks).map(id => { return { key: id } })}
-          renderItem={this.renderItem}
+          renderItem={({item}) => (<DeckListItem key={item.key} id={item.key}/>)}
         />
       </View>
     )

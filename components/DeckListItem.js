@@ -1,46 +1,44 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { white } from '../utils/colors'
+import Deck from './Deck'
+import { white, purple } from '../utils/colors'
+import { withNavigation } from 'react-navigation'
 
 class DeckListItem extends Component {
   render() {
-    const { title, cardCount } = this.props
+    const { title, cardCount, navigation } = this.props
     return (
-      <View style={styles.item}>
+      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Deck')}>
         <Text>{title}</Text>
         <Text style={{marginTop: 10}}>{cardCount}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
 
 function mapStateToProps(decks, props) {
-  const { id } = props
+  const { id, navigation } = props
   return {
     title: decks[id].title,
-    cardCount: decks[id].questions.length
+    cardCount: decks[id].questions.length,
+    navigation: navigation
   }
 }
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
   item: {
     backgroundColor: white,
     borderRadius: 16,
+    borderColor: purple,
+    borderWidth: 1,
     padding: 15,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 17,
     justifyContent: 'center',
-    alignItems: 'center',
-    shadowRadius: 3,
-    shadowOpacity: 0.8,
-    shadowColor: 'rgba(0, 0, 0, 0.24)',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
+    alignItems: 'center'
   }
 })
 
-export default connect(mapStateToProps)(DeckListItem)
+export default withNavigation(connect(mapStateToProps)(DeckListItem))

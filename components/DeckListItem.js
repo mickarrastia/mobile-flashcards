@@ -7,9 +7,9 @@ import { withNavigation } from 'react-navigation'
 
 class DeckListItem extends Component {
   render() {
-    const { title, cardCount, navigation } = this.props
+    const { id, title, cardCount, navigation } = this.props
     return (
-      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Deck')}>
+      <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Deck', {deckId: id, deckName: title})}>
         <Text>{title}</Text>
         <Text style={{marginTop: 10}}>{cardCount}</Text>
       </TouchableOpacity>
@@ -18,15 +18,15 @@ class DeckListItem extends Component {
 }
 
 function mapStateToProps(decks, props) {
-  const { id, navigation } = props
+  const { id } = props
   return {
+    id: id,
     title: decks[id].title,
-    cardCount: decks[id].questions.length,
-    navigation: navigation
+    cardCount: decks[id].questions.length
   }
 }
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   item: {
     backgroundColor: white,
     borderRadius: 16,

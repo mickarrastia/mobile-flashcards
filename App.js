@@ -2,9 +2,10 @@ import React from 'react'
 import { View, StatusBar } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { createStackNavigator } from 'react-navigation'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 import reducer from './reducers'
 import DeckList from './components/DeckList'
+import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import { purple, white } from './utils/colors'
 import { Constants } from 'expo'
@@ -17,11 +18,26 @@ function UdaciStatusBar({ backgroundColor, ...props }) {
   )
 }
 
-const Stack = createStackNavigator({
+const Tabs = createBottomTabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
-      title: 'Flashcard Decks'
+      tabBarLabel: 'DECKS'
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'NEW DECK'
+    }
+  }
+})
+
+const Stack = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      title: 'Revise!'
     }
   },
   Deck: {

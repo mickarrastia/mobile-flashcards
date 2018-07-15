@@ -6,19 +6,23 @@ import {withNavigation} from "react-navigation";
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
-    const {deckName} = navigation.state.params
+    const { deckName } = navigation.state.params
     return {
       title: deckName
     }
   }
 
   render() {
-    const {title, questions} = this.props.deck
+    const { deckId } = this.props
+    const { title, questions } = this.props.deck
     return (
       <View style={styles.deck}>
         <Text>{title}</Text>
         <Text>{questions.length}</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('AddCard', {deckId: deckId})}
+        >
           <Text>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, {backgroundColor: purple}]}>
@@ -33,6 +37,7 @@ function mapStateToProps (state, { navigation }) {
   const { deckId } = navigation.state.params
 
   return {
+    deckId,
     deck: state[deckId],
   }
 }
@@ -58,5 +63,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
+
+function mapStateToProps (state, { navigation }) {
+  const { deckId } = navigation.state.params
+
+  return {
+    deckId,
+    deck: state[deckId],
+  }
+}
 
 export default connect(mapStateToProps)(Deck)

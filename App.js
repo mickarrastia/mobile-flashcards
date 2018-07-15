@@ -7,6 +7,7 @@ import reducer from './reducers'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
+import AddCard from './components/AddCard'
 import { purple, white } from './utils/colors'
 import { Constants } from 'expo'
 
@@ -48,6 +49,9 @@ const Stack = createStackNavigator({
         backgroundColor: purple,
       }
     }
+  },
+  AddCard: {
+    screen: AddCard
   }
 })
 

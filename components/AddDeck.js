@@ -25,12 +25,13 @@ class AddDeck extends Component {
     deckTitle: ''
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
+  toDeck = (id, title) => {
+    this.props.navigation.navigate('Deck', {deckId: id, deckName: title})
   }
 
   submit = () => {
     const {deckTitle} = this.state
+    const title = deckTitle
 
     if(!deckTitle.trim()) {
       alert('You need to enter a title')
@@ -47,7 +48,7 @@ class AddDeck extends Component {
 
     this.setState(() => ({deckTitle: ''}))
 
-    this.toHome()
+    this.toDeck(deckId, title)
 
     saveDeck(deckId, newDeck)
   }

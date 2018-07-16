@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import {white, purple} from '../utils/colors'
-import {withNavigation} from "react-navigation";
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -25,7 +24,10 @@ class Deck extends Component {
         >
           <Text>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, {backgroundColor: purple}]}>
+        <TouchableOpacity
+          style={[styles.button, {backgroundColor: purple}]}
+          onPress={() => this.props.navigation.navigate('Quiz', {deckId: deckId})}
+        >
           <Text style={{color: white}}>Quiz</Text>
         </TouchableOpacity>
       </View>

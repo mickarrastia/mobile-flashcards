@@ -11,7 +11,7 @@ class DeckListItem extends Component {
     return (
       <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Deck', {deckId: id, deckName: title})}>
         <Text>{title}</Text>
-        <Text style={{marginTop: 10}}>{cardCount}</Text>
+        <Text style={{marginTop: 10}}>{cardCount} {cardCount === 1 ? `card` : `cards`}</Text>
       </TouchableOpacity>
     )
   }

@@ -17,7 +17,7 @@ class Deck extends Component {
     return (
       <View style={styles.deck}>
         <Text>{title}</Text>
-        <Text>{questions.length}</Text>
+        <Text>{questions.length} {questions.length === 1 ? `card` : `cards`}</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate('AddCard', {deckId: deckId})}
@@ -26,7 +26,7 @@ class Deck extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, {backgroundColor: purple}]}
-          onPress={() => this.props.navigation.navigate('Quiz', {deckId: deckId})}
+          onPress={() => (questions.length === 0 ? alert('Add some cards!') : this.props.navigation.navigate('Quiz', {deckId: deckId}))}
         >
           <Text style={{color: white}}>Quiz</Text>
         </TouchableOpacity>

@@ -29,15 +29,27 @@ class Quiz extends Component {
     }))
   }
 
+  restart = () => {
+    this.setState(() => ({
+      questionIdx : 0,
+      correct : 0,
+      incorrect : 0,
+      showAnswer: false,
+      viewResult: false
+    }))
+  }
+
   render() {
-    const { deck } = this.props
+    //TODO: currently this is a bit of a dump. Needs refactoring into components and functions
+
+    const { deckId, deck, navigation } = this.props
     const { questionIdx, showAnswer } = this.state
-    const showResult = questionIdx < deck.questions.length ? true : false
+    const showCard = questionIdx < deck.questions.length ? true : false
 
     return(
       <View style={styles.quiz}>
-        {showResult
-          ?
+        <Text style={styles.counter}>{showCard ? questionIdx + 1 : questionIdx}/{deck.questions.length}</Text>
+        {showCard ?
             <View style={styles.quiz}>
               <Text>{showAnswer ? deck.questions[questionIdx].answer : deck.questions[questionIdx].question}</Text>
               <TextButton
@@ -62,6 +74,21 @@ class Quiz extends Component {
             <View style={styles.quiz}>
               <Text>Correct: {this.state.correct}</Text>
               <Text>Incorrect: {this.state.incorrect}</Text>
+              <Text>{Math.round((this.state.correct/deck.questions.length)*100)}%</Text>
+
+              <TouchableOpacity
+                style={[styles.button, {backgroundColor: purple, marginTop: 25}]}
+                onPress={this.restart}
+              >
+                <Text style={{color: white}}>Restart Quiz</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.button, {backgroundColor: white, marginTop: 25}]}
+                onPress={() => navigation.navigate('Deck', {deckId: deckId, deckName: deck.title})}
+              >
+                <Text style={{color: purple}}>Back to Deck</Text>
+              </TouchableOpacity>
             </View>
         }
       </View>
@@ -74,6 +101,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  counter: {
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: 10
   },
   button: {
     width: 150,

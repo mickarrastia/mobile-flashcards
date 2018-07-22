@@ -51,6 +51,7 @@ class AddCard extends Component {
           value={question}
           style={styles.input}
           onChangeText={(question) => this.setState({question})}
+          autoFocus={true}
         />
         <Text style={styles.label}>Answer</Text>
         <TextInput

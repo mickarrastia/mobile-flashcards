@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import {red, green, white, purple} from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
 
@@ -12,6 +13,11 @@ class Quiz extends Component {
     incorrect: 0,
     showAnswer: false,
     viewResult: false
+  }
+
+  componentDidMount() {
+    // Assuming the user will take the quiz
+    clearLocalNotification().then(setLocalNotification)
   }
 
   handleToggleButton = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StatusBar } from 'react-native'
+import {View, StatusBar, AsyncStorage} from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
@@ -11,6 +11,7 @@ import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import { purple, white } from './utils/colors'
 import { Constants } from 'expo'
+import { setLocalNotification } from './utils/helpers'
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
@@ -55,6 +56,10 @@ const Stack = createStackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>

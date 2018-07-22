@@ -21,39 +21,61 @@ function UdaciStatusBar({ backgroundColor, ...props }) {
   )
 }
 
-const Tabs = createBottomTabNavigator({
-  DeckList: {
-    screen: DeckList,
-    navigationOptions: {
-      tabBarLabel: 'DECKS'
+const Tabs = createBottomTabNavigator(
+  {
+    DeckList: {
+      screen: DeckList,
+      navigationOptions: {
+        tabBarLabel: 'DECKS'
+      }
+    },
+    AddDeck: {
+      screen: AddDeck,
+      navigationOptions: {
+        tabBarLabel: 'NEW DECK'
+      }
     }
   },
-  AddDeck: {
-    screen: AddDeck,
-    navigationOptions: {
-      tabBarLabel: 'NEW DECK'
+  {
+    tabBarOptions: {
+      activeTintColor: purple,
+      labelStyle: {
+        fontSize: 20,
+        paddingBottom: 10
+      }
     }
   }
-})
+)
 
-const Stack = createStackNavigator({
-  Home: {
-    screen: Tabs,
-    navigationOptions: {
-      title: 'Revise!',
-      headerBackTitle: null
+const Stack = createStackNavigator(
+  {
+    Home: {
+      screen: Tabs,
+      navigationOptions: {
+        title: 'Revise!',
+        headerBackTitle: null
+      }
+    },
+    Deck: {
+      screen: Deck
+    },
+    AddCard: {
+      screen: AddCard
+    },
+    Quiz: {
+      screen: Quiz
     }
   },
-  Deck: {
-    screen: Deck
-  },
-  AddCard: {
-    screen: AddCard
-  },
-  Quiz: {
-    screen: Quiz
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerTintColor: purple,
+      headerTitleStyle: {
+        fontSize: 22
+      },
+    }
   }
-})
+)
 
 export default class App extends React.Component {
   componentDidMount() {

@@ -72,8 +72,9 @@ const styles = StyleSheet.create({
     margin: 40
   },
   label: {
-    fontSize: 15,
-    alignSelf: 'flex-start'
+    fontSize: 18,
+    alignSelf: 'flex-start',
+    color: purple
   },
   input: {
     width: 250,

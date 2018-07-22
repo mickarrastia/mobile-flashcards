@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { purple } from '../utils/colors'
 import QuizCard from './QuizCard'
 import QuizScore from './QuizScore'
 
@@ -84,7 +85,9 @@ const styles = StyleSheet.create({
   counter: {
     alignSelf: 'flex-start',
     marginTop: 10,
-    marginLeft: 10
+    marginLeft: 10,
+    color: purple,
+    fontSize: 18
   }
 })
 

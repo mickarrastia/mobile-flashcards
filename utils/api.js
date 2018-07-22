@@ -2,6 +2,8 @@ import { AsyncStorage } from 'react-native'
 import { init, DECKS_STORAGE_KEY } from './_decks'
 
 export function getDecks () {
+  // This is helpful during development
+  // AsyncStorage.clear()
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then(init)
 }

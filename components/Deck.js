@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import {white, purple} from '../utils/colors'
+import {white, purple, gray} from '../utils/colors'
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -28,19 +28,19 @@ class Deck extends Component {
 
     return (
       <Animated.View style={[styles.deck, { opacity }]}>
-        <Text>{title}</Text>
-        <Text>{questions.length} {questions.length === 1 ? `card` : `cards`}</Text>
+        <Text style={styles.deckTitle}>{title}</Text>
+        <Text style={styles.cardCount}>{questions.length} {questions.length === 1 ? `card` : `cards`}</Text>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, {marginTop: 50}]}
           onPress={() => this.props.navigation.navigate('AddCard', {deckId: deckId})}
         >
-          <Text>Add Card</Text>
+          <Text style={styles.buttonText}>Add Card</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, {backgroundColor: purple}]}
           onPress={() => (questions.length === 0 ? alert('Add some cards!') : this.props.navigation.navigate('Quiz', {deckId: deckId}))}
         >
-          <Text style={{color: white}}>Quiz</Text>
+          <Text style={[styles.buttonText, {color: white}]}>Quiz</Text>
         </TouchableOpacity>
       </Animated.View>
     )
@@ -62,6 +62,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  deckTitle: {
+    fontSize: 30,
+    color: purple
+  },
+  cardCount: {
+    marginTop: 10,
+    fontSize: 25,
+    color: gray
+  },
   button: {
     width: 150,
     height: 50,
@@ -75,6 +84,10 @@ const styles = StyleSheet.create({
     marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  buttonText: {
+    fontSize: 16,
+    color: purple
   }
 })
 

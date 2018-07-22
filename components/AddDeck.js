@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
   question: {
     fontSize: 30,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
+    color: purple
   },
   input: {
     width: 250,

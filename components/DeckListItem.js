@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Deck from './Deck'
-import { white, purple } from '../utils/colors'
+import { white, purple, gray } from '../utils/colors'
 import { withNavigation } from 'react-navigation'
 
 class DeckListItem extends Component {
@@ -10,8 +10,8 @@ class DeckListItem extends Component {
     const { id, title, cardCount, navigation } = this.props
     return (
       <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('Deck', {deckId: id, deckName: title})}>
-        <Text>{title}</Text>
-        <Text style={{marginTop: 10}}>{cardCount} {cardCount === 1 ? `card` : `cards`}</Text>
+        <Text style={styles.deckTitle}>{title}</Text>
+        <Text style={styles.cardCount}>{cardCount} {cardCount === 1 ? `card` : `cards`}</Text>
       </TouchableOpacity>
     )
   }
@@ -27,6 +27,15 @@ function mapStateToProps(decks, props) {
 }
 
 const styles = StyleSheet.create({
+  deckTitle: {
+    fontSize: 30,
+    color: purple
+  },
+  cardCount: {
+    marginTop: 10,
+    fontSize: 22,
+    color: gray
+  },
   item: {
     backgroundColor: white,
     borderRadius: 16,

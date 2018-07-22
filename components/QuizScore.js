@@ -9,22 +9,22 @@ class QuizScore extends Component {
     const {deckId, deck, correct, incorrect, restart, navigation } = this.props
     return (
       <View style={styles.center}>
-        <Text>Correct: {correct}</Text>
-        <Text>Incorrect: {incorrect}</Text>
-        <Text>{Math.round((correct/deck.questions.length)*100)}%</Text>
+        <Text style={styles.score}>Correct: {correct}</Text>
+        <Text style={styles.score}>Incorrect: {incorrect}</Text>
+        <Text style={styles.score}>{Math.round((correct/deck.questions.length)*100)}%</Text>
 
         <TouchableOpacity
           style={[styles.button, {backgroundColor: purple, marginTop: 25}]}
           onPress={restart}
         >
-          <Text style={{color: white}}>Restart Quiz</Text>
+          <Text style={styles.buttonText}>Restart Quiz</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, {backgroundColor: white, marginTop: 25}]}
           onPress={() => navigation.navigate('Deck', {deckId: deckId, deckName: deck.title})}
         >
-          <Text style={{color: purple}}>Back to Deck</Text>
+          <Text style={[styles.buttonText, {color: purple}]}>Back to Deck</Text>
         </TouchableOpacity>
       </View>
     )
@@ -47,6 +47,15 @@ const styles = StyleSheet.create({
     marginTop: 17,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  buttonText: {
+    color: white,
+    fontSize: 16
+  },
+  score: {
+    fontSize: 25,
+    color: purple,
+    marginBottom: 5
   }
 })
 

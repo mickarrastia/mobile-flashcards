@@ -4,15 +4,28 @@ import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
 import DeckListItem from './DeckListItem'
+import { AppLoading } from 'expo'
 
 class DeckList extends Component {
+  state = {
+    ready: false
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
-    getDecks().then((decks) => dispatch(receiveDecks(decks)))
+    getDecks()
+      .then((decks) => dispatch(receiveDecks(decks)))
+      .then(() => this.setState(() => ({ready: true})))
   }
 
   render() {
     const { decks } = this.props
+    const { ready } = this.state
+
+    if (ready === false) {
+      return <AppLoading />
+    }
+
     return (
       <View style={{ flex: 1, alignSelf: 'stretch' }}>
         <FlatList

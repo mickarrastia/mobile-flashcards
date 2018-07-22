@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import {white, purple} from '../utils/colors'
 
@@ -11,11 +11,23 @@ class Deck extends Component {
     }
   }
 
+  state = {
+    opacity: new Animated.Value(0),
+    flex: new Animated.Value(0)
+  }
+
+  componentDidMount() {
+    const { opacity } = this.state
+    Animated.timing(opacity, {toValue: 1, duration: 1500}).start()
+  }
+
   render() {
     const { deckId } = this.props
     const { title, questions } = this.props.deck
+    const { opacity } = this.state
+
     return (
-      <View style={styles.deck}>
+      <Animated.View style={[styles.deck, { opacity }]}>
         <Text>{title}</Text>
         <Text>{questions.length} {questions.length === 1 ? `card` : `cards`}</Text>
         <TouchableOpacity
@@ -30,7 +42,7 @@ class Deck extends Component {
         >
           <Text style={{color: white}}>Quiz</Text>
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     )
   }
 }

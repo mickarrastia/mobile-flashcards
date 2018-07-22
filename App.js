@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StatusBar, AsyncStorage} from 'react-native'
+import { View, StatusBar } from 'react-native'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
@@ -9,7 +9,7 @@ import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-import { purple, white } from './utils/colors'
+import { purple } from './utils/colors'
 import { Constants } from 'expo'
 import { setLocalNotification } from './utils/helpers'
 
@@ -72,7 +72,7 @@ const Stack = createStackNavigator(
       headerTintColor: purple,
       headerTitleStyle: {
         fontSize: 22
-      },
+      }
     }
   }
 )

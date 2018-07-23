@@ -38,7 +38,7 @@ Here new cards can be added or a quiz can be started.
 
 ![alt text](screenshots/2-deck.png "Deck") <br />
 
-4 - The screen to a card is a form with a question and answer.
+4 - The screen to add a card is a form with input fields for a question and an answer.
 
 ![alt text](screenshots/3-add-card.png "Add card") <br />
 

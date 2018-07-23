@@ -65,6 +65,7 @@ The app is underpinned by [React Native](https://facebook.github.io/react-native
 * View
 * Text
 * TouchableOpacity
+* FlatList
 * StyleSheet
 * TextInput
 * KeyboardAvoidingView
@@ -83,4 +84,4 @@ Notifications are supported using Expo's Notifications and Permissions.
 
 # Acknowledgments
 
-The course example application UdaciFitness provided useful patterns for the creation of this app.
+The course example application _UdaciFitness_ provided useful patterns for the creation of this app.

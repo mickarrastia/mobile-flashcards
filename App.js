@@ -9,7 +9,7 @@ import AddDeck from './components/AddDeck'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-import { purple } from './utils/colors'
+import { purple, white } from './utils/colors'
 import { Constants } from 'expo'
 import { setLocalNotification } from './utils/helpers'
 
@@ -73,6 +73,9 @@ const Stack = createStackNavigator(
       headerTitleStyle: {
         fontSize: 22
       }
+    },
+    cardStyle: {
+      backgroundColor: white
     }
   }
 )
